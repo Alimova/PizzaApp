@@ -1,0 +1,8 @@
+<div class="jumbotron text-center">
+  <div class="container" *ngIf="!(af.auth | async)">
+    <h1>Pizza Application</h1>
+    <p>Log in to order your tasty custom pizza now!</p>
+    <!--<li *ngIf="!(af.auth | async)"><a (click)="login()">Login</a></li>-->
+    <a (click)="login()"><img src="assets/img/google.png"></a>
+  </div>
+</div>
