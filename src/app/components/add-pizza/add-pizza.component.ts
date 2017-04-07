@@ -26,6 +26,10 @@ export class AddPizzaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.mushrooms = false;
+    this.bacon = false;
+    this.cheese = false;
+    this.olive = false;
   }
 
   onAddSubmit(){

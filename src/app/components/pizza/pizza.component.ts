@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-pizza',
@@ -6,10 +9,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pizza.component.css']
 })
 export class PizzaComponent implements OnInit {
-
-  constructor() { }
+  id: any;
+  pizza: any;
+  imageUrl: any;
+  constructor(
+    private firebaseService:FirebaseService,
+    private router:Router,
+    private route:ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+
+    this.firebaseService.getPizzaDetails(this.id).subscribe(pizza => {
+      this.pizza = pizza;
+
+      let storageRef = firebase.storage().ref();
+      let spaceRef = storageRef.child(pizza.path);
+      storageRef.child(pizza.path).getDownloadURL().then((url) =>{
+        this.imageUrl = url;
+      }).catch((error) => {
+        console.log(error);
+      })
+    });
+  }
+
+  onDeleteClick(){
+    this.firebaseService.deletePizza(this.id);
+    this.router.navigate(['/pizzas']);
   }
 
 }

@@ -1,3 +1,20 @@
-<p>
-  pizza works!
-</p>
+<div *ngIf="pizza">
+  <a [routerLink]="['/pizzas']">Go Back</a>
+  <br>
+  <h2 class="page-header">{{pizza.title}} <small>${{pizza.price}}</small></h2>
+  <div class="row">
+    <div class="col-md-4">
+      <img style="width: 100%" class="thumbnail" src="{{imageUrl}}"/>
+    </div>
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li class="list-group-item">Owner: {{pizza.owner}}</li>
+        <li class="list-group-item">Size: {{pizza.size}}</li>
+        <li class="list-group-item">Type: {{pizza.type}}</li>
+        <li class="list-group-item">Price: {{pizza.price}}</li>
+      </ul>
+    </div>
+    <a class="btn btn-default" [routerLink]="['/edit-pizza/'+pizza.$key]">Edit</a>
+    <a (click)="onDeleteClick()" class="btn btn-danger" href="#">Delete</a>
+  </div>
+</div>
