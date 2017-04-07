@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service'
 
 @Component({
   selector: 'app-pizzas',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pizzas.component.css']
 })
 export class PizzasComponent implements OnInit {
-
-  constructor() { }
+  pizzas:any;
+  constructor(private firebaseService:FirebaseService) { }
 
   ngOnInit() {
+    this.firebaseService.getPizzas().subscribe(pizzas => {
+      //console.log(pizzas);
+      this.pizzas = pizzas;
+    })
   }
 
 }

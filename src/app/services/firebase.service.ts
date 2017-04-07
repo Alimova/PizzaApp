@@ -12,7 +12,6 @@ export class FirebaseService {
   constructor(private af: AngularFire) {
     this.folder = 'pizzaimages';
     this.pizzas = this.af.database.list('/pizzas') as FirebaseListObservable<Pizza[]>;
-
   }
 
   getPizzas(){
