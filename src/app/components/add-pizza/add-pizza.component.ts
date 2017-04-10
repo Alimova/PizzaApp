@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-pizza',
   templateUrl: './add-pizza.component.html',
-  styleUrls: ['./add-pizza.component.css']
+  styleUrls: ['./add-pizza.component.sass']
 })
 export class AddPizzaComponent implements OnInit {
   title?:any;
@@ -30,6 +30,8 @@ export class AddPizzaComponent implements OnInit {
     this.bacon = false;
     this.cheese = false;
     this.olive = false;
+    this.price = 20;
+    this.size = "Medium";
   }
 
   onAddSubmit(){

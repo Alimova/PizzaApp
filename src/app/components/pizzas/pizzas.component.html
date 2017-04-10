@@ -2,7 +2,7 @@
   <li class="list-group-item" *ngFor="let pizza of pizzas">
     <a [routerLink]="['/pizza/'+pizza.$key]">
       {{pizza.title}}
-      {{pizza.price}}
+      ${{pizza.price}}
     </a>
   </li>
 </ul>

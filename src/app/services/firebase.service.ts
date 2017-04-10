@@ -38,11 +38,11 @@ export class FirebaseService {
   }
 
   updatePizza(id, pizza){
-    //return this.pizza.update(id, pizza);
+    return this.pizzas.update(id, pizza);
   }
 
   deletePizza(id){
-    //return this.pizza.remove(id);
+    return this.pizzas.remove(id);
   }
 
 }
