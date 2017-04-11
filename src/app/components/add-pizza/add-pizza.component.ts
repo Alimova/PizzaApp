@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-pizza',
   templateUrl: './add-pizza.component.html',
+  //styleUrls: ['./add-pizza.component.css'],
   styleUrls: ['./add-pizza.component.sass']
 })
 export class AddPizzaComponent implements OnInit {
