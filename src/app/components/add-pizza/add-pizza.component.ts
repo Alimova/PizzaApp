@@ -20,6 +20,7 @@ export class AddPizzaComponent implements OnInit {
   cheese?:any;
   olive?:any;
   price?:any;
+  uid?:any;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -33,19 +34,22 @@ export class AddPizzaComponent implements OnInit {
     this.olive = false;
     this.price = 20;
     this.size = "Medium";
+    this.owner = this.firebaseService.getCurrentUserName();
+    this.uid = this.firebaseService.getCurrentUserId();
   }
 
   onAddSubmit(){
     let pizza = {
       title: this.title,
       size: this.size,
-      owner: this.owner,
+      owner: this.firebaseService.getCurrentUserName(),
       mushrooms: this.mushrooms,
       bacon: this.bacon,
       cheese: this.cheese,
       olive: this.olive,
       price: this.price,
-      type: this.type
+      type: this.type,
+      uid: this.firebaseService.getCurrentUserId()
     }
     this.firebaseService.addPizza(pizza);
     this.router.navigate(['/pizzas']);

@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { AngularFire, FirebaseAuthState, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 
 @Injectable()
 export class FirebaseService {
   pizzas: FirebaseListObservable<any[]>;
   pizza: FirebaseObjectObservable<any>;
+  user: FirebaseAuthState;
   folder: any;
+  uid:any;
+  uname:any;
 
 
   constructor(private af: AngularFire) {
     this.folder = 'pizzaimages';
     this.pizzas = this.af.database.list('/pizzas') as FirebaseListObservable<Pizza[]>;
+
+    this.af.auth.subscribe((user:FirebaseAuthState) => this.onUserStateChange(user));
+  }
+
+  onUserStateChange(user: FirebaseAuthState) {
+    //console.log("user state changed " + user.google.uid);
+    this.uid = user.google.uid;
+    this.uname = user.google.displayName;
+    //console.log("state: "+this.uname);
   }
 
   getPizzas(){
@@ -45,6 +57,16 @@ export class FirebaseService {
     return this.pizzas.remove(id);
   }
 
+  getCurrentUserName(){
+    //console.log("get: "+this.uname);
+    //todo: this.af.auth.subscribe((user:FirebaseAuthState) => this.onUserStateChange(user));
+    return this.uname;
+  }
+
+  getCurrentUserId(){
+    return this.uid;
+  }
+
 }
 
 interface Pizza{
@@ -53,6 +75,7 @@ interface Pizza{
   type?:string;
   image?:string;
   size?:string;
+  uid?:string;
   owner?:string;
   mushrooms?:string;
   bacon?:string;
@@ -60,4 +83,6 @@ interface Pizza{
   olive?:string;
   price?:string;
   path?:string;
+
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFire} from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +19,8 @@ export class NavbarComponent implements OnInit {
 
   login(){
     this.af.auth.login();
+    //console.log(this.af.auth().currentUser);
+    //console.log(this.af.auth.getAuth());
     //af.auth.login({ email: 'email', password: 'pass' });
   }
 
