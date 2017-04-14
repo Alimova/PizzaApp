@@ -15,7 +15,6 @@ export class FirebaseService {
   constructor(private af: AngularFire) {
     this.folder = 'pizzaimages';
     this.pizzas = this.af.database.list('/pizzas') as FirebaseListObservable<Pizza[]>;
-
     this.af.auth.subscribe((user:FirebaseAuthState) => this.onUserStateChange(user));
   }
 
@@ -33,7 +32,6 @@ export class FirebaseService {
   getPizzaDetails(id){
     this.pizza = this.af.database.object('/pizzas/'+id) as FirebaseObjectObservable<Pizza>;
     return this.pizza;
-    //console.log(listing);
   }
 
   addPizza(pizza){
@@ -59,7 +57,7 @@ export class FirebaseService {
 
   getCurrentUserName(){
     //console.log("get: "+this.uname);
-    //todo: this.af.auth.subscribe((user:FirebaseAuthState) => this.onUserStateChange(user));
+    //todo: this.af.auth.subscribe(this.onUserStateChange(user));
     return this.uname;
   }
 
@@ -83,6 +81,5 @@ interface Pizza{
   olive?:string;
   price?:string;
   path?:string;
-
 
 }

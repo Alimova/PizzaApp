@@ -1,4 +1,4 @@
-<div class="col-lg-12">
+<div class="bs-component">
   <h2 class="page-header">Add Pizza        <b>${{this.price}}</b></h2>
 
   <div class="col-lg-6">
@@ -9,37 +9,30 @@
         <!--<input id="my-checkbox"  [(ngModel)]="my-checkbox" name="my-checkbox" type="checkbox"/>-->
         <!--<label for="my-checkbox"></label>-->
       <!--</div>-->
+    <!--<canvas id="pizzabase"></canvas>-->
     <div class="pizza-overlay">
       <img src="assets/img/pizza_base.jpg"/>
     </div>
-    <div class="pizza-overlay-toping" *ngIf="this.mushrooms">
+    <div class="pizza-overlay-toping" *ngIf="this.mushrooms" id="mushrooms">
       <img src="assets/img/mushrooms.png"/>
     </div>
-    <div class="pizza-overlay-toping" *ngIf="this.cheese">
+    <div class="pizza-overlay-toping" *ngIf="this.cheese" id="cheese">
       <img src="assets/img/cheese.png"/>
     </div>
-    <div class="pizza-overlay-toping" *ngIf="this.bacon">
+    <div class="pizza-overlay-toping" *ngIf="this.bacon" id="bacon">
       <img src="assets/img/bacon.png"/>
     </div>
-    <div class="pizza-overlay-toping" *ngIf="this.olive">
+    <div class="pizza-overlay-toping" *ngIf="this.olive" id="olive">
       <img src="assets/img/olive.png"/>
     </div>
   </div>
 
   <div class="col-lg-6">
-  <form (submit)="onAddSubmit()">
+  <form (submit)="onAddSubmit()" (change)="calcPizzaPrice()">
     <div class="form-group">
       <label>Title</label>
       <input class="form-control" type="text" [(ngModel)]="title" name="title" [ngModelOptions]="{standalone: true}">
     </div>
-    <!--<div class="form-group">-->
-      <!--<label>Size</label>-->
-      <!--<select class="form-control" type="text" [(ngModel)]="size" name="size">-->
-        <!--<option value="Small">Small</option>-->
-        <!--<option value="Medium">Medium</option>-->
-        <!--<option value="Big">Big</option>-->
-      <!--</select>-->
-    <!--</div>-->
 
     <div class="form-group">
       <label>Size:</label>
@@ -80,14 +73,8 @@
         <option value="Cheese">Cheese</option>
       </select>
     </div>
-    <!--<div class="form-group">-->
-      <!--<label>Price</label>-->
-      <!--&lt;!&ndash;<input class="form-control" type="text" [(ngModel)]="price" name="price" disabled>&ndash;&gt;-->
-      <!--<input class="form-control" type="number" [(ngModel)]="price" name="price">-->
-    <!--</div>-->
     <div class="form-group">
       <label>Owner</label>
-      <!--<input class="form-control" type="text" [(ngModel)]="owner" name="owner">-->
       <input class="form-control" type="text" [(ngModel)]="owner" name="owner" disabled>
     </div>
     <input type="submit" value="submit" class="btn btn-success">
