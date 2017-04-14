@@ -16,6 +16,7 @@ export class FirebaseService {
     this.folder = 'pizzaimages';
     this.pizzas = this.af.database.list('/pizzas') as FirebaseListObservable<Pizza[]>;
     this.af.auth.subscribe((user:FirebaseAuthState) => this.onUserStateChange(user));
+    //todo: generate name for image - it overrides images with same names
   }
 
   onUserStateChange(user: FirebaseAuthState) {

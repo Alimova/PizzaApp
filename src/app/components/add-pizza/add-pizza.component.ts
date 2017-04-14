@@ -57,8 +57,6 @@ export class AddPizzaComponent implements OnInit {
 
   }
 
-
-
   onAddSubmit(){
     let pizza = {
       title: this.title,
@@ -78,6 +76,7 @@ export class AddPizzaComponent implements OnInit {
   }
 
   mergeLayers(){
+    //todo: refactor to work on canvas
     var canvas0 = document.getElementById("pizza");
     //var context0 = canvas0.getContext('2d');
 
@@ -90,7 +89,7 @@ export class AddPizzaComponent implements OnInit {
     //var context2 = canvas2.getContext('2d');
 
 // references to layer3
-    var canvas3 = document.getElementById("olive");
+    var canvas3 = document.getElementById("bacon");
     //var context3 = canvas3.getContext('2d');
 // references to layer4
     var canvas4 = document.getElementById("olive");
