@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FirebaseService} from '../../services/firebase.service';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-pizza.component.sass']
 })
 export class AddPizzaComponent implements OnInit {
-  @ViewChild('pizza') canvas;
+  @ViewChild('pizzabase') canvasRef: ElementRef;
   title?:any;
   type?:any;
   image?:any;
@@ -27,19 +27,6 @@ export class AddPizzaComponent implements OnInit {
     private router: Router
   ) { }
 
-
-
-  drawPizza(){
-    //var canvas = document.getElementById('pizzabase'),
-    //context = this.canvas.getContext('2d');
-    console.log(document.getElementById("pizza"));
-    //console.log(this.canvas.getContext("2d"));
-    //var base_image = new Image();
-    //base_image.src = 'assets/img/pizza_base.jpg';
-    //context.drawImage(base_image, 488, 495);
-
-  }
-
   ngOnInit() {
     this.mushrooms = false;
     this.bacon = false;
@@ -52,9 +39,7 @@ export class AddPizzaComponent implements OnInit {
     //this.firebaseService.getCurrentUserName().subscribe(uname => {
     //  this.owner = uname;
     //})
-
-    //this.drawPizza();
-
+    this.displayImageCanvas();
   }
 
   onAddSubmit(){
@@ -73,38 +58,23 @@ export class AddPizzaComponent implements OnInit {
     this.firebaseService.addPizza(pizza);
     this.router.navigate(['/pizzas']);
     //this.calcPizzaPrice()
+    //Canvas2Image.saveAsPNG(canvas);
   }
 
-  mergeLayers(){
-    //todo: refactor to work on canvas
-    var canvas0 = document.getElementById("pizza");
-    //var context0 = canvas0.getContext('2d');
+  displayImageCanvas(){
+    let canvas = this.canvasRef.nativeElement;
+    let context = canvas.getContext('2d');
 
-    var canvas1 = document.getElementById("mushrooms");
-    console.log(canvas1);
-    //var context1 = canvas1.getContext('2d');
+    let source =  new Image();
 
-// references to layer2
-    var canvas2 = document.getElementById("cheese");
-    //var context2 = canvas2.getContext('2d');
+    source.onload = () => {
+      canvas.height = source.height;
+      canvas.width = source.width;
+      context.drawImage(source, 0, 0);
 
-// references to layer3
-    var canvas3 = document.getElementById("bacon");
-    //var context3 = canvas3.getContext('2d');
-// references to layer4
-    var canvas4 = document.getElementById("olive");
-    //var context4 = canvas4.getContext('2d');
-
-    //context0.drawImage(canvas1,0,0);
-    //context0.drawImage(canvas2,0,0);
-    //context0.drawImage(canvas3,0,0);
-    //context0.drawImage(canvas4,0,0);
-    //
-    //var img=new Image();
-    //img.onload=function(){
-    //  document.getElementById("results").src=img.src;
-    //}
-    //img.src=canvas0.toDataURL();
+      this.image = canvas.toDataURL();
+    };
+    source.src = "assets/img/pizza_base.jpg";
   }
 
   calcPizzaPrice(){
