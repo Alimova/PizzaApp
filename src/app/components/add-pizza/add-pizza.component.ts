@@ -36,10 +36,7 @@ export class AddPizzaComponent implements OnInit {
     this.size = "Medium";
     this.owner = this.firebaseService.getCurrentUserName();
     //this.uid = this.firebaseService.getCurrentUserId();
-    //this.firebaseService.getCurrentUserName().subscribe(uname => {
-    //  this.owner = uname;
-    //})
-    this.displayImageCanvas();
+    this.displayImageCanvas(0, "assets/img/pizza_base.jpg");
   }
 
   onAddSubmit(){
@@ -61,7 +58,7 @@ export class AddPizzaComponent implements OnInit {
     //Canvas2Image.saveAsPNG(canvas);
   }
 
-  displayImageCanvas(){
+  displayImageCanvas(zIndex,src){
     let canvas = this.canvasRef.nativeElement;
     let context = canvas.getContext('2d');
 
@@ -74,9 +71,10 @@ export class AddPizzaComponent implements OnInit {
 
       this.image = canvas.toDataURL();
     };
-    source.src = "assets/img/pizza_base.jpg";
+    source.style.zIndex = zIndex;
+    source.src = src;
   }
-
+  
   calcPizzaPrice(){
     var sizePrice = 0;
     switch (this.size){
@@ -88,14 +86,16 @@ export class AddPizzaComponent implements OnInit {
         break;
       default: sizePrice=0;
     }
-    var price = ((this.mushrooms ? 10 : 0)
+    this.price = ((this.mushrooms ? 10 : 0)
     + (this.cheese ? 9 : 0)
     + (this.olive ? 8 : 0)
     + (this.bacon ? 7 : 0)
     + sizePrice);
-    this.price = price;
-    //return price;
   }
 
+
+}
+
+interface Canvas{
 
 }

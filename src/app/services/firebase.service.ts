@@ -6,7 +6,6 @@ import * as firebase from 'firebase';
 export class FirebaseService {
   pizzas: FirebaseListObservable<any[]>;
   pizza: FirebaseObjectObservable<any>;
-  user: FirebaseAuthState;
   folder: any;
   uid:any;
   uname:any;
@@ -20,10 +19,8 @@ export class FirebaseService {
   }
 
   onUserStateChange(user: FirebaseAuthState) {
-    //console.log("user state changed " + user.google.uid);
     this.uid = user.google.uid;
     this.uname = user.google.displayName;
-    //console.log("state: "+this.uname);
   }
 
   getPizzas(){
@@ -57,9 +54,8 @@ export class FirebaseService {
   }
 
   getCurrentUserName(){
-    //console.log("get: "+this.uname);
     //todo: this.af.auth.subscribe(this.onUserStateChange(user));
-    return this.uname;
+      return this.uname;
   }
 
   getCurrentUserId(){
@@ -82,5 +78,6 @@ interface Pizza{
   olive?:string;
   price?:string;
   path?:string;
-
 }
+
+
