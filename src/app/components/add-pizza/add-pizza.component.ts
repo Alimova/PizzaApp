@@ -103,7 +103,6 @@ export class AddPizzaComponent implements OnInit {
   displayImageCanvas(zIndex,src, id){
     let canvas = this.loadCanvas(id);
     let context = canvas.getContext('2d');
-    console.log(canvas);
 
     let source =  new Image();
 
@@ -147,8 +146,6 @@ export class AddPizzaComponent implements OnInit {
     + (this.bacon ? 7 : 0)
     + sizePrice);
   }
-
-
 }
 
 
