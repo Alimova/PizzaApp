@@ -59,6 +59,47 @@ export class AddPizzaComponent implements OnInit {
     //Canvas2Image.saveAsPNG(canvas);
   }
 
+  checkMushrooms(){
+    let el = this.pizzaDiv.nativeElement;
+    if(!!el.children.mushrooms){
+      el.removeChild(el.children.mushrooms);
+    }
+    else{
+      this.displayImageCanvas(1, 'assets/img/mushrooms.png', 'mushrooms');
+    }
+  }
+
+  checkBacon(){
+    let el = this.pizzaDiv.nativeElement;
+    if(!!el.children.bacon){
+      el.removeChild(el.children.bacon);
+    }
+    else{
+      this.displayImageCanvas(1, 'assets/img/bacon.png', 'bacon');
+    }
+  }
+
+  checkOlive(){
+    let el = this.pizzaDiv.nativeElement;
+    if(!!el.children.olive){
+      el.removeChild(el.children.olive);
+    }
+    else{
+      this.displayImageCanvas(1, 'assets/img/olive.png', 'olive');
+    }
+  }
+
+
+  checkCheese(){
+    let el = this.pizzaDiv.nativeElement;
+    if(!!el.children.cheese){
+      el.removeChild(el.children.cheese);
+    }
+    else{
+      this.displayImageCanvas(1, 'assets/img/cheese.png', 'cheese');
+    }
+  }
+
   displayImageCanvas(zIndex,src, id){
     let canvas = this.loadCanvas(id);
     let context = canvas.getContext('2d');
@@ -71,6 +112,7 @@ export class AddPizzaComponent implements OnInit {
       canvas.width = source.width;
       context.drawImage(source, 0, 0);
       if(zIndex>0){
+        //canvas.style. = "canvas-overlay";
         canvas.style.top = "100px";
         canvas.style.left = "100px";
       }
@@ -82,7 +124,7 @@ export class AddPizzaComponent implements OnInit {
   loadCanvas(id) {
     var canvas = document.createElement('canvas');
     var div = this.pizzaDiv.nativeElement;
-    canvas.id     = id;
+    canvas.id = id;
     canvas.style.position = "absolute";
     div.appendChild(canvas);
     return canvas;

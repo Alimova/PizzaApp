@@ -64,23 +64,23 @@
       <br>
       <div class="checkbox-inline">
         <label>
-        <input type="checkbox" [(ngModel)]="mushrooms" name="mushrooms" (change)="displayImageCanvas(1, 'assets/img/mushrooms.png', 'mushrooms')">
+        <input type="checkbox" [(ngModel)]="mushrooms" name="mushrooms" (change)="checkMushrooms()">
           Mushrooms
         </label>
       </div>
       <div class="checkbox-inline">
-        <label><input type="checkbox" [(ngModel)]="cheese" name="cheese" (change)="displayImageCanvas(2, 'assets/img/cheese.png', 'cheese')">
+        <label><input type="checkbox" [(ngModel)]="cheese" name="cheese" (change)="checkCheese()">
           Cheese
         </label>
       </div>
       <div class="checkbox-inline">
-        <label><input type="checkbox" [(ngModel)]="bacon" name="bacon" (change)="displayImageCanvas(3, 'assets/img/bacon.png', 'bacon')">
+        <label><input type="checkbox" [(ngModel)]="bacon" name="bacon" (change)="checkBacon()">
           Bacon
         </label>
       </div>
       <div class="checkbox-inline">
         <label>
-          <input type="checkbox" [(ngModel)]="olive" name="olive" (change)="displayImageCanvas(4, 'assets/img/olive.png', 'olive')">
+          <input type="checkbox" [(ngModel)]="olive" name="olive" (change)="checkOlive()">
           Olive
         </label>
       </div>
