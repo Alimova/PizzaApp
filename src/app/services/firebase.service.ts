@@ -38,7 +38,7 @@ export class FirebaseService {
   addPizza(pizza){
     let storageRef = firebase.storage().ref();
     for ( let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
-      let path = `/${this.folder}/${selectedFile.name}`;
+      let path = `/${this.folder}/${pizza.title+"_"+selectedFile.name}`;
       let iRef = storageRef.child(path);
       iRef.put(selectedFile).then((snapshot) =>{
         pizza.image = selectedFile.name;
