@@ -52,11 +52,25 @@ export class AddPizzaComponent implements OnInit {
       price: this.price,
       type: this.type,
       uid: this.firebaseService.getCurrentUserId()
-    }
+      //image: this.pizzaDiv.nativeElement.children[0].toDataURL("image/png");
+    };
+    console.log(pizza);
+    this.mergeCanvas();
     this.firebaseService.addPizza(pizza);
+
     this.router.navigate(['/pizzas']);
-    //this.calcPizzaPrice()
+
     //Canvas2Image.saveAsPNG(canvas);
+    //dataURL = canvas.toDataURL('image/png')
+  }
+
+  mergeCanvas(){
+    let el = this.pizzaDiv.nativeElement;
+    for(let i=0;i<el.children.length;i++){
+      el.children[0].getContext('2d').drawImage(el.children[i], 0, 0);
+    }
+    this.image = el.children[0].toDataURL("image/png");
+    return this.image;
   }
 
   checkMushrooms(){
@@ -88,7 +102,6 @@ export class AddPizzaComponent implements OnInit {
       this.displayImageCanvas(1, 'assets/img/olive.png', 'olive');
     }
   }
-
 
   checkCheese(){
     let el = this.pizzaDiv.nativeElement;

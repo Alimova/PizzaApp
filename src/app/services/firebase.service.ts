@@ -34,15 +34,42 @@ export class FirebaseService {
 
   addPizza(pizza){
     let storageRef = firebase.storage().ref();
-    for ( let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
-      let path = `/${this.folder}/${pizza.title+"_"+selectedFile.name}`;
-      let iRef = storageRef.child(path);
-      iRef.put(selectedFile).then((snapshot) =>{
-        pizza.image = selectedFile.name;
-        pizza.path = path;
-        return this.pizzas.push(pizza);
-      })
-    }
+    let path = `/${this.folder}/${pizza.title+".png"}`;
+    console.log(pizza);                                 //todo
+    let iRef = storageRef.child(path);
+    iRef.put(pizza.image).then((snapshot) =>{
+      console.log("snap: "+pizza);                       //todo
+      pizza.image = pizza.title+".png";
+      pizza.path = path;
+      return this.pizzas.push(pizza);
+    })
+
+    //uploadTask.on('state_changed', function(snapshot){
+    //  // Observe state change events such as progress, pause, and resume
+    //  // See below for more detail
+    //}, function(error) {
+    //  console.log(error);
+    //  // Handle unsuccessful uploads
+    //}, function() {
+    //  // Handle successful uploads on complete
+    //  pizza.image = pizza.title+".png";
+    //  pizza.path = path;
+    //  return this.pizzas.push(pizza);
+    //  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    //  //var downloadURL = uploadTask.snapshot.downloadURL;
+    //});
+
+    //***for image upload***
+    //let storageRef = firebase.storage().ref();
+    //for ( let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
+    //  let path = `/${this.folder}/${pizza.title+"_"+selectedFile.name}`;
+    //  let iRef = storageRef.child(path);
+    //  iRef.put(selectedFile).then((snapshot) =>{
+    //    pizza.image = selectedFile.name;
+    //    pizza.path = path;
+    //    return this.pizzas.push(pizza);
+    //  })
+    //}
   }
 
   updatePizza(id, pizza){
@@ -68,7 +95,7 @@ interface Pizza{
   $key?:string;
   title?:string;
   type?:string;
-  image?:string;
+  image?:any;
   size?:string;
   uid?:string;
   owner?:string;
