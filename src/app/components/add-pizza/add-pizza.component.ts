@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AddPizzaComponent implements OnInit {
   @ViewChild('pizzabase') canvasRef: ElementRef;
+  @ViewChild('pizzadiv') pizzaDiv: ElementRef;
   title?:any;
   type?:any;
   image?:any;
@@ -36,7 +37,7 @@ export class AddPizzaComponent implements OnInit {
     this.size = "Medium";
     this.owner = this.firebaseService.getCurrentUserName();
     //this.uid = this.firebaseService.getCurrentUserId();
-    this.displayImageCanvas(0, "assets/img/pizza_base.jpg");
+    this.displayImageCanvas(0, "assets/img/pizza_base.jpg", "pizzabase");
   }
 
   onAddSubmit(){
@@ -58,9 +59,10 @@ export class AddPizzaComponent implements OnInit {
     //Canvas2Image.saveAsPNG(canvas);
   }
 
-  displayImageCanvas(zIndex,src){
-    let canvas = this.canvasRef.nativeElement;
+  displayImageCanvas(zIndex,src, id){
+    let canvas = this.loadCanvas(id);
     let context = canvas.getContext('2d');
+    console.log(canvas);
 
     let source =  new Image();
 
@@ -68,13 +70,24 @@ export class AddPizzaComponent implements OnInit {
       canvas.height = source.height;
       canvas.width = source.width;
       context.drawImage(source, 0, 0);
-
-      this.image = canvas.toDataURL();
+      if(zIndex>0){
+        canvas.style.top = "100px";
+        canvas.style.left = "100px";
+      }
+    //  this.image = canvas.toDataURL();
     };
-    source.style.zIndex = zIndex;
     source.src = src;
   }
-  
+
+  loadCanvas(id) {
+    var canvas = document.createElement('canvas');
+    var div = this.pizzaDiv.nativeElement;
+    canvas.id     = id;
+    canvas.style.position = "absolute";
+    div.appendChild(canvas);
+    return canvas;
+  }
+
   calcPizzaPrice(){
     var sizePrice = 0;
     switch (this.size){
@@ -96,6 +109,4 @@ export class AddPizzaComponent implements OnInit {
 
 }
 
-interface Canvas{
 
-}

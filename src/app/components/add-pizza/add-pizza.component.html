@@ -1,7 +1,7 @@
 <div class="bs-component">
   <h2 class="page-header">Add Pizza        <b>${{this.price}}</b></h2>
 
-  <div class="col-lg-6">
+  <div class="col-lg-6" #pizzadiv>
     <a [routerLink]="['/pizzas']">Back</a>
     <br>
     <!--<div class="container">-->
@@ -11,7 +11,7 @@
       <!--</div>-->
     <!--<canvas id="pizzabase"></canvas>-->
     <!--<img ng-src="" style="width: 100%">-->
-    <canvas #pizzabase></canvas>
+    <!--<canvas #pizzabase></canvas>-->
     <!--<div>-->
       <!--<div class="pizza-overlay">-->
         <!--<img src="assets/img/pizza_base.jpg"/>-->
@@ -62,10 +62,28 @@
     <div class="form-group">
       <label>Topings:</label>
       <br>
-      <div class="checkbox-inline"><label><input type="checkbox" [(ngModel)]="mushrooms" name="mushrooms">Mushrooms</label></div>
-      <div class="checkbox-inline"><label><input type="checkbox" [(ngModel)]="cheese" name="cheese">Cheese</label></div>
-      <div class="checkbox-inline"><label><input type="checkbox" [(ngModel)]="bacon" name="bacon">Bacon</label></div>
-      <div class="checkbox-inline"><label><input type="checkbox" [(ngModel)]="olive" name="olive">Olive</label></div>
+      <div class="checkbox-inline">
+        <label>
+        <input type="checkbox" [(ngModel)]="mushrooms" name="mushrooms" (change)="displayImageCanvas(1, 'assets/img/mushrooms.png', 'mushrooms')">
+          Mushrooms
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label><input type="checkbox" [(ngModel)]="cheese" name="cheese" (change)="displayImageCanvas(2, 'assets/img/cheese.png', 'cheese')">
+          Cheese
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label><input type="checkbox" [(ngModel)]="bacon" name="bacon" (change)="displayImageCanvas(3, 'assets/img/bacon.png', 'bacon')">
+          Bacon
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label>
+          <input type="checkbox" [(ngModel)]="olive" name="olive" (change)="displayImageCanvas(4, 'assets/img/olive.png', 'olive')">
+          Olive
+        </label>
+      </div>
     </div>
     <div class="form-group">
       <input id="image" type="file" [(ngModel)]="image" [ngModelOptions]="{standalone: true}">
