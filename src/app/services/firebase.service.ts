@@ -61,6 +61,7 @@ export class FirebaseService {
   }
 
   deletePizza(id){
+    //todo remove from storage
     return this.pizzas.remove(id);
   }
 

@@ -52,25 +52,20 @@ export class AddPizzaComponent implements OnInit {
       price: this.price,
       type: this.type,
       uid: this.firebaseService.getCurrentUserId()
-      //image: this.pizzaDiv.nativeElement.children[0].toDataURL("image/png");
     };
     console.log(pizza);
     this.mergeCanvas();
     this.firebaseService.addPizza(pizza,this.image);
 
     this.router.navigate(['/pizzas']);
-
-    //Canvas2Image.saveAsPNG(canvas);
-    //dataURL = canvas.toDataURL('image/png')
   }
 
   mergeCanvas(){
     let el = this.pizzaDiv.nativeElement;
-    for(let i=0;i<el.children.length;i++){
-      el.children[0].getContext('2d').drawImage(el.children[i], 0, 0);
+    for(let i=1;i<el.children.length;i++){
+      el.children[0].getContext('2d').drawImage(el.children[i], 96, 96);
     }
     this.image = el.children[0].toDataURL("image/png");
-    return this.image;
   }
 
   checkMushrooms(){
@@ -124,11 +119,9 @@ export class AddPizzaComponent implements OnInit {
       canvas.width = source.width;
       context.drawImage(source, 0, 0);
       if(zIndex>0){
-        //canvas.style. = "canvas-overlay";
         canvas.style.top = "100px";
         canvas.style.left = "100px";
       }
-    //  this.image = canvas.toDataURL();
     };
     source.src = src;
   }
