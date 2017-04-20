@@ -32,32 +32,16 @@ export class FirebaseService {
     return this.pizza;
   }
 
-  addPizza(pizza){
+  addPizza(pizza,image){
     let storageRef = firebase.storage().ref();
     let path = `/${this.folder}/${pizza.title+".png"}`;
     console.log(pizza);                                 //todo
     let iRef = storageRef.child(path);
-    iRef.put(pizza.image).then((snapshot) =>{
-      console.log("snap: "+pizza);                       //todo
+    iRef.putString(image, 'data_url').then((snapshot) =>{
       pizza.image = pizza.title+".png";
       pizza.path = path;
       return this.pizzas.push(pizza);
-    })
-
-    //uploadTask.on('state_changed', function(snapshot){
-    //  // Observe state change events such as progress, pause, and resume
-    //  // See below for more detail
-    //}, function(error) {
-    //  console.log(error);
-    //  // Handle unsuccessful uploads
-    //}, function() {
-    //  // Handle successful uploads on complete
-    //  pizza.image = pizza.title+".png";
-    //  pizza.path = path;
-    //  return this.pizzas.push(pizza);
-    //  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-    //  //var downloadURL = uploadTask.snapshot.downloadURL;
-    //});
+    });
 
     //***for image upload***
     //let storageRef = firebase.storage().ref();

@@ -56,7 +56,7 @@ export class AddPizzaComponent implements OnInit {
     };
     console.log(pizza);
     this.mergeCanvas();
-    this.firebaseService.addPizza(pizza);
+    this.firebaseService.addPizza(pizza,this.image);
 
     this.router.navigate(['/pizzas']);
 
