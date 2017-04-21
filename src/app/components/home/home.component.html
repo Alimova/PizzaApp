@@ -1,11 +1,5 @@
-<div class="jumbotron text-center" *ngIf="!(af.auth | async)">
-  <div class="container" >
-    <h1>Pizza Application</h1>
-    <p>Log in to order your tasty custom pizza now!</p>
-    <a (click)="login()"><img src="assets/img/google.png"></a>
-  </div>
-</div>
-<!--<div class="jumbotron">-->
+<h2 *ngIf="(af.auth | async)">Pizzas under construction:</h2>
+<div class="jumbotron" *ngIf="(af.auth | async)">
   <div class="col-md-3"  *ngFor="let pizza of pizzas | slice:0:4">
     <div class="panel panel-default">
       <div class="panel-heading">{{pizza.title}}</div>
@@ -13,7 +7,15 @@
 
       <!--<img style="width: 100%" class="thumbnail" src="{{imageUrl}}"/>-->
     </div>
-
+    <br />
   </div>
-<!--</div>-->
+</div>
+
+<div class="jumbotron text-center" *ngIf="!(af.auth | async)">
+  <div class="container" >
+    <h1>Pizza Application</h1>
+    <p>Log in to order your tasty custom pizza now!</p>
+    <a (click)="login()"><img src="assets/img/google.png"></a>
+  </div>
+</div>
 

@@ -21,7 +21,7 @@ export class AddPizzaComponent implements OnInit {
   cheese?:any;
   olive?:any;
   price?:any;
-  //uid?:any;
+  complete?:any;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -51,7 +51,8 @@ export class AddPizzaComponent implements OnInit {
       olive: this.olive,
       price: this.price,
       type: this.type,
-      uid: this.firebaseService.getCurrentUserId()
+      uid: this.firebaseService.getCurrentUserId(),
+      complete: false
     };
     console.log(pizza);
     this.mergeCanvas();
@@ -63,7 +64,7 @@ export class AddPizzaComponent implements OnInit {
   mergeCanvas(){
     let el = this.pizzaDiv.nativeElement;
     for(let i=1;i<el.children.length;i++){
-      el.children[0].getContext('2d').drawImage(el.children[i], 96, 96);
+      el.children[0].getContext('2d').drawImage(el.children[i], 95, 95);
     }
     this.image = el.children[0].toDataURL("image/png");
   }
