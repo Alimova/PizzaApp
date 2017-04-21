@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { AngularFire } from 'angularfire2';
-import { FirebaseService } from '../../services/firebase.service'
+import { FirebaseService } from '../../services/firebase.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +17,27 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseService.getPizzas().subscribe(pizzas => {
-      //console.log(pizzas);
       this.pizzas = pizzas;
     })
+  }
+
+  loadedImg() {
+    let imgs = document.getElementsByTagName("img");
+    alert(imgs.length);
+    for(let i=0;imgs.length;i++){
+      imgs[i].src = this.getImageUrl(imgs[i].src);
+    }
+  }
+
+  getImageUrl(path){
+    let storageRef = firebase.storage().ref();
+    storageRef.child(path).getDownloadURL().then((url) =>{
+      alert(url);
+      return url;
+    }).catch((error) => {
+      console.log(error);
+    });
+    return path;
   }
 
   login(){
@@ -26,3 +45,8 @@ export class HomeComponent implements OnInit {
   }
 
 }
+//
+//export class HomeComponent implements AfterViewInit {
+//
+//
+//}

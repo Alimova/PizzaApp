@@ -1,11 +1,14 @@
 <h2 *ngIf="(af.auth | async)">Pizzas under construction:</h2>
 <div class="jumbotron" *ngIf="(af.auth | async)">
+  <!--todo: complete = false-->
   <div class="col-md-3"  *ngFor="let pizza of pizzas | slice:0:4">
     <div class="panel panel-default">
       <div class="panel-heading">{{pizza.title}}</div>
-      <div class="panel-body"></div>
+      <div class="panel-body">
+        <img style="width: 100%" class="thumbnail" src="{{pizza.path}}" onload="loadedImg()"/>
+        <!--onload="getImageUrl('{{pizza.path}}');"-->
+      </div>
 
-      <!--<img style="width: 100%" class="thumbnail" src="{{imageUrl}}"/>-->
     </div>
     <br />
   </div>
