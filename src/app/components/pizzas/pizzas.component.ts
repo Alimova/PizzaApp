@@ -12,7 +12,6 @@ export class PizzasComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseService.getPizzas().subscribe(pizzas => {
-      //console.log(pizzas);
       this.pizzas = pizzas;
     })
   }

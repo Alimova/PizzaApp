@@ -20,7 +20,6 @@ export class PizzaComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-
     this.firebaseService.getPizzaDetails(this.id).subscribe(pizza => {
       this.pizza = pizza;
 
