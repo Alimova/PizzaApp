@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { AngularFire } from 'angularfire2';
-//import { Router } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import * as firebase from 'firebase';
 
@@ -13,8 +12,7 @@ export class HomeComponent implements OnInit {
   pizzas:any;
   constructor(
     public af:AngularFire,
-    private firebaseService:FirebaseService//,
-    //public router:Router
+    private firebaseService:FirebaseService
   ) { }
 
   ngOnInit() {
@@ -39,7 +37,6 @@ export class HomeComponent implements OnInit {
 
   login(){
     this.af.auth.login();
-    //this.router.navigate(['/']);
   }
 
 }
