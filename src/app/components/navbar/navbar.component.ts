@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   login(){
     this.af.auth.login();
+    this.router.navigate(['/']);
     //console.log(this.af.auth().currentUser);
     //console.log(this.af.auth.getAuth());
     //af.auth.login({ email: 'email', password: 'pass' });

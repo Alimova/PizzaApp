@@ -24,7 +24,6 @@ export class PizzaComponent implements OnInit {
       this.pizza = pizza;
 
       let storageRef = firebase.storage().ref();
-      let spaceRef = storageRef.child(pizza.path);
       storageRef.child(pizza.path).getDownloadURL().then((url) =>{
         this.imageUrl = url;
       }).catch((error) => {
