@@ -18,39 +18,32 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.firebaseService.getPizzas().subscribe(pizzas => {
       pizzas.forEach(pizza => {
-        //pizza.url = this.getImageUrl(pizza.path);
-        this.loadedImg();
-        //console.log(pizza.url);
+        this.getImageUrl(pizza);
       });
       this.pizzas = pizzas;
-    })
-    ;
+      console.log(this.pizzas);
+    });
+    //this.loadedImg();
   }
 
   loadedImg() {
-    debugger;
     let imgs = document.getElementsByTagName("img");
-    //alert(imgs.length);
-    for(let i=0;imgs.length;i++){
-      imgs[i].src = this.getImageUrl(imgs[i].src);
-      console.log(imgs[i].src)
+    for(let i=0;i<imgs.length;i++){
+      let src = imgs[i].src;
+      //alert(src);
+      //imgs[i].src = this.getImageUrl(src);
     }
   }
 
-  getImageUrl(path){
-    let imgUrl = "";
+  getImageUrl(pizza){
     let storageRef = firebase.storage().ref();
-    let spaceRef = storageRef.child(path);
-    storageRef.child(path).getDownloadURL().then((url) =>{
-      imgUrl = url;
-      document.getElementsByTagName("img")[0].src = imgUrl;
-      console.log(document.getElementsByTagName("img")[0]);
+    let spaceRef = storageRef.child(pizza.path);
+    storageRef.child(pizza.path).getDownloadURL().then((url) =>{
+      pizza.url = url;
       return url;
     }).catch((error) => {
       //imgUrl = "alert('error')"
     });
-    //debugger;
-    return imgUrl;
   }
 
   login(){
@@ -58,8 +51,3 @@ export class HomeComponent implements OnInit {
   }
 
 }
-//
-//export class HomeComponent implements AfterViewInit {
-//
-//
-//}
