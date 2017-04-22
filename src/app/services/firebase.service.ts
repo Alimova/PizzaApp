@@ -89,7 +89,8 @@ interface Pizza{
   olive?:string;
   price?:string;
   path?:string;
-  complete:string;
+  //complete?:string;
+  url?:string;
 }
 
 

@@ -18,10 +18,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.firebaseService.getPizzas().subscribe(pizzas => {
       this.pizzas = pizzas;
+      //pizzas.image = this.getImageUrl(pizzas.path);
+      pizzas.forEach(pizza => {
+        pizza.url = this.getImageUrl(pizza.path);
+        //console.log(pizza.image);
+      });
     })
   }
 
   loadedImg() {
+    debugger;
     let imgs = document.getElementsByTagName("img");
     alert(imgs.length);
     for(let i=0;imgs.length;i++){
@@ -30,14 +36,17 @@ export class HomeComponent implements OnInit {
   }
 
   getImageUrl(path){
+    let imgUrl = "";
     let storageRef = firebase.storage().ref();
+    let spaceRef = storageRef.child(path);
     storageRef.child(path).getDownloadURL().then((url) =>{
-      alert(url);
+      imgUrl = url;
       return url;
     }).catch((error) => {
-      console.log(error);
+      imgUrl = "alert('error')"
     });
-    return path;
+    //debugger;
+    return imgUrl;
   }
 
   login(){
