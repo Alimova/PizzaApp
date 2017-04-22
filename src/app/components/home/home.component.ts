@@ -17,21 +17,23 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseService.getPizzas().subscribe(pizzas => {
-      this.pizzas = pizzas;
-      //pizzas.image = this.getImageUrl(pizzas.path);
       pizzas.forEach(pizza => {
-        pizza.url = this.getImageUrl(pizza.path);
-        //console.log(pizza.image);
+        //pizza.url = this.getImageUrl(pizza.path);
+        this.loadedImg();
+        //console.log(pizza.url);
       });
+      this.pizzas = pizzas;
     })
+    ;
   }
 
   loadedImg() {
     debugger;
     let imgs = document.getElementsByTagName("img");
-    alert(imgs.length);
+    //alert(imgs.length);
     for(let i=0;imgs.length;i++){
       imgs[i].src = this.getImageUrl(imgs[i].src);
+      console.log(imgs[i].src)
     }
   }
 
@@ -41,9 +43,11 @@ export class HomeComponent implements OnInit {
     let spaceRef = storageRef.child(path);
     storageRef.child(path).getDownloadURL().then((url) =>{
       imgUrl = url;
+      document.getElementsByTagName("img")[0].src = imgUrl;
+      console.log(document.getElementsByTagName("img")[0]);
       return url;
     }).catch((error) => {
-      imgUrl = "alert('error')"
+      //imgUrl = "alert('error')"
     });
     //debugger;
     return imgUrl;
