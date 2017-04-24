@@ -35,6 +35,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onCompleteClick(){
+
+  }
+
   login(){
     this.af.auth.login();
   }
