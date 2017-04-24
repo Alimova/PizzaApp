@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 })
 export class HomeComponent implements OnInit {
   pizzas:any;
+  pizza: any;
   constructor(
     public af:AngularFire,
     private firebaseService:FirebaseService
@@ -35,8 +36,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onCompleteClick(){
-
+  onCompleteClick(id){
+    //alert(id);
+    this.pizza = this.firebaseService.setPizzaComplete(id);
+    this.pizza.complete = true;
   }
 
   login(){

@@ -31,6 +31,11 @@ export class FirebaseService {
     return this.pizza;
   }
 
+  setPizzaComplete(id){
+    this.pizza = this.af.database.object('/pizzas/'+id) as FirebaseObjectObservable<Pizza>;
+    return this.pizza;
+  }
+
   addPizza(pizza,image){
     let storageRef = firebase.storage().ref();
     let path = `/${this.folder}/${pizza.title+".png"}`;
@@ -89,7 +94,7 @@ interface Pizza{
   olive?:string;
   price?:string;
   path?:string;
-  //complete?:string;
+  complete?:string;
   url?:string;
 }
 
