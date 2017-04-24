@@ -2,7 +2,8 @@
 <div class="jumbotron"  *ngIf="(af.auth | async)">
   <div class="container" >
   <!--todo: complete = false-->
-    <div class="col-md-3"  *ngFor="let pizza of pizzas | slice:0:4"> //*ngIf="pizza.complete==false"
+    <div class="col-md-3"  *ngFor="let pizza of pizzas | slice:0:4">
+      <!--//*ngIf="pizza.complete==false"-->
       <div class="panel panel-default">
         <div class="panel-heading"><h4>{{pizza.title}}</h4></div>
         <div class="panel-body">
