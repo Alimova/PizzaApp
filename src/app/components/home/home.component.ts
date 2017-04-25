@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 import { FirebaseService } from '../../services/firebase.service';
 import * as firebase from 'firebase';
@@ -22,10 +22,8 @@ export class HomeComponent implements OnInit {
         this.getImageUrl(pizza);
       });
       this.pizzas = pizzas.filter(function(pizza){
-        return pizza.complete == false;
+        return (pizza.complete == false);
       });
-
-      console.log(this.pizzas);
     });
   }
 
@@ -41,9 +39,11 @@ export class HomeComponent implements OnInit {
 
   onCompleteClick(id){
     //alert(id);
-    debugger;
-    this.pizza = this.firebaseService.setPizzaComplete(id);
+    this.firebaseService.getPizzaDetails(id).subscribe(pizza => {
+      this.pizza = pizza;
+    });
     this.pizza.complete = true;
+    //this.firebaseService.updatePizza(id, this.pizza);
   }
 
   login(){

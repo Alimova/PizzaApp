@@ -31,10 +31,10 @@ export class FirebaseService {
     return this.pizza;
   }
 
-  setPizzaComplete(id){
-    this.pizza = this.af.database.object('/pizzas/'+id) as FirebaseObjectObservable<Pizza>;
-    return this.pizza;
-  }
+  //setPizzaComplete(id){
+  //  this.pizza = this.af.database.object('/pizzas/'+id) as FirebaseObjectObservable<Pizza>;
+  //  return this.pizza;
+  //}
 
   addPizza(pizza,image){
     let storageRef = firebase.storage().ref();
