@@ -21,7 +21,10 @@ export class HomeComponent implements OnInit {
       pizzas.forEach(pizza => {
         this.getImageUrl(pizza);
       });
-      this.pizzas = pizzas;
+      this.pizzas = pizzas.filter(function(pizza){
+        return pizza.complete == false;
+      });
+
       console.log(this.pizzas);
     });
   }
@@ -38,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   onCompleteClick(id){
     //alert(id);
+    debugger;
     this.pizza = this.firebaseService.setPizzaComplete(id);
     this.pizza.complete = true;
   }
