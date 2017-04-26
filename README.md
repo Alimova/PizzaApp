@@ -1,11 +1,3 @@
-
-
-### Web development course
-
-
-# Welcome to the course task
-
-
 ## Full Stack development
 
 
@@ -64,8 +56,5 @@ authorize :arrow_right:  create pizza :arrow_right:  order it :arrow_right: view
 
 
 ## You can also customize your app as you want.
-
-
-## If you are stuck, fill free to ask advise in our Kottans web course [chat](https://gitter.im/Kottans/Web_Course_1).
 
 # GOOD LUCK!
