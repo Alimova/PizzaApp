@@ -52,6 +52,11 @@ export class HomeComponent implements OnInit {
     //this.router.navigate(['/pizzas']);
   }
 
+  matchUid(uid){
+    return (uid == this.firebaseService.getCurrentUserId())
+
+  }
+
   login(){
     this.af.auth.login();
     this.router.navigate(['/']);

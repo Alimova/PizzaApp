@@ -7,11 +7,9 @@
         <div class="panel-body">
           <img style="width: 100%" class="thumbnail" [src]="pizza.url" id="{{pizza.title}}" />
           <b>Owner:</b> {{pizza.owner}}<br>
-          <b>Price:</b> ${{pizza.price}}<br>
-          <!--{{pizza.$key}}-->
-          <input (click)="onCompleteClick(pizza.$key)"  value="Complete" class="btn btn-success">
+          <b>Price:</b> ${{pizza.price}}<br><br>
+          <input *ngIf="matchUid(pizza.uid)" (click)="onCompleteClick(pizza.$key)"  value="Complete" class="btn btn-success">
         </div>
-
       </div>
       <br />
     </div>
@@ -19,7 +17,7 @@
 </div>
 
 <div class="jumbotron text-center" *ngIf="!(af.auth | async)">
-  <div class="container" >
+  <div class="container">
     <h1>Pizza Application</h1>
     <p>Log in to order your tasty custom pizza now!</p>
     <a (click)="login()"><img src="assets/img/google.png"></a>
