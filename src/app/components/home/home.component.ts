@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
     private firebaseService:FirebaseService,
     private router: Router,
     private route: ActivatedRoute
-
   ) { }
 
   ngOnInit() {
@@ -42,7 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   onCompleteClick(id){
-    //alert(id);
     this.firebaseService.getPizzaDetails(id).subscribe(pizza => {
       this.pizza = pizza;
     });
@@ -53,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   matchUid(uid){
-    return (uid == this.firebaseService.getCurrentUserId())
+    return (uid == this.firebaseService.getCurrentUserId());
 
   }
 
