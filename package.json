@@ -14,12 +14,13 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "preinstall": "npm install -g angular-cli",
+//    "preinstall": "npm install -g angular-cli",
     "postinstall": "ng build --aot -prod",
     "deploy": "git push origin master && git push heroku master"
   },
   "private": true,
   "dependencies": {
+    "angular/cli": "1.0.0",
     "@angular/cli": "1.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
@@ -29,7 +30,6 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "angular/cli": "1.0.0",
     "angularfire2": "^2.0.0-beta.8",
     "core-js": "^2.4.1",
     "express": "^4.15.2",
